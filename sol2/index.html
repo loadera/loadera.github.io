@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BETA Солевые Наркоманы 2 BETA</title>
+	<link rel="shortcut icon" href="src/fav.ico" type="image/x-icon">
+	<script type="text/javascript">
+
+	</script>
+	<script type="text/javascript" src="https://vk.com/js/api/openapi.js?161"></script>
+	<script type="text/javascript">VK.init({apiId: 7064671, onlyWidgets: true});</script>
+
+
+	<style type="text/css">
+		body{text-align: center;color:#ffd700;
+			background:url("src/fon.png"),linear-gradient(to bottom right,red,orange,yellow,green,skyblue,blue,purple);background-attachment: fixed;background-repeat:repeat;  }
+		#canvas{border:2px solid blue;}
+		#name{text-shadow:  2px 0 2px #fff, 
+										    0 2px 2px #00f, 
+											-2px 0 2px #00f, 
+											0 -2px 2px #00f;}
+											
+		#butn{padding:90px;font-size:50px;border:2px solid blue;}
+		#vk_comments{margin: 0 auto;}
+		#geg{margin-bottom: -15px;}
+		#phonebutn{padding:20px;}
+		.phonegame{display: none;}
+		#shopbutn{padding:40px;font-size:50px;border:2px solid red;}
+	</style>
+</head>
+<body>
+	<h1 id="name">BETA Солевые Наркоманы 2 BETA</h1>
+	<h3 id="name2">Управление: WASD и E или кнопки внизу</h3>
+	<div id="Game">
+		<canvas id="canvas" width="720px" height="848px">лол на браузере твоем не парит игра попробуй гденить в другом</canvas>
+		<br>
+		<div class="phonegame">
+			<button class="phonegame" id="butn" onclick="goup()">↑</button><br>
+			<button class="phonegame" id="butn" onclick="goleft()">←</button>
+			<button class="phonegame" id="butn" onclick="godown()">↓</button>
+			<button class="phonegame" id="butn" onclick="goright()">→</button>
+			<br><br>
+			<button class="phonegame" id="butn" onclick="int()"><img src="src/fav.ico"/>Использовать<img src="src/fav.ico"/></button>
+			<br><br>
+		</div>
+		<button id="shopbutn" onclick="shop()">Магазин</button><br><br>
+		<button id="phonebutn" onclick="mobmode()">МОБИЛЬНЫЙ РЕЖИМ</button>
+		<br><br>
+	</div>
+	<div id="vk_comments" ></div>
+	<script type="text/javascript">VK.Widgets.Comments("vk_comments", {limit: 10,width:720, attach: "*"});</script>
+	<h6 id="name2">Разработка студии говно 2019 лучшая игра 2009 года</h6>
+	<h5 id="name2"><a href="https://vk.com/club183776977">vk.com/club183776977</a></h5>
+	<img src="src/top.png" id="geg"/>
+	<script type="text/javascript">
+		function rand(min, max) {
+ 			return Math.floor(Math.random() * (max - min)) + min;
+		}
+		var canv  	= document.getElementById('canvas');
+		var ctx   	= canv.getContext("2d");
+		var anim    = 0;
+		var using   = false;
+		pl = {
+			x:rand(0,720-64),
+			y:rand(50,720-106),
+			caef:0,
+			narco1_count:0,
+			narco2_count:0,
+			narco3_count:0,
+			avatar:1,
+			money:0,
+			moneybonus:0,
+			caefbonus:0,
+			workdebuf:5,
+		}
+		narco1 = {x:rand(0,720-64),y:rand(50,720-128),caef:5,}
+		narco2 = {x:rand(0,720-120),y:rand(50,720-79),caef:15,}
+		narco3 = {x:rand(0,720-128),y:rand(50,720-29),caef:35,}
+		var narco1img  = new Image();
+		var narco2img  = new Image();
+		var narco3img  = new Image();
+		var avatar     = new Image();
+		var ruka 	   = new Image();
+		var bg    	   = new Image();
+		var gui        = new Image();
+		avatar.src     = "src/ava1.png";
+		gui.src        = "src/gui.png";
+		narco1img.src  = "src/narco1.png";
+		narco2img.src  = "src/narco2.png";
+		narco3img.src  = "src/narco3.png";
+		ruka.src 	   = "src/ruka1.png";
+		bg.src    	   = "src/padik.png";
+		bg.onload      = function(){
+			ctx.drawImage(bg,0,0);
+			ctx.drawImage(ruka,pl.x,pl.y);
+			draw()
+		}
+		function draw(){
+			if(pl.x<=0){pl.x=1;}else{}
+			if(pl.x>=720-64){pl.x=719-64;}else{}
+			if(pl.y<=0){pl.y=1;}else{}
+			if(pl.y>=720-106){pl.y=719-106;}else{}
+			ctx.drawImage(bg,0,0);
+			ctx.drawImage(narco1img,narco1.x,narco1.y);
+			ctx.drawImage(narco2img,narco2.x,narco2.y);
+			ctx.drawImage(narco3img,narco3.x,narco3.y);
+			ctx.drawImage(ruka,pl.x,pl.y);
+			ctx.font="25px arial";
+			ctx.fillStyle="skyblue";
+			ctx.drawImage(gui,0,720);
+			ctx.drawImage(avatar,0,720);
+			ctx.fillText("Кайфарик : "+pl.caef,138,750);
+			ctx.fillText("Денег        : "+pl.money,138,780);
+			ctx.fillText("Бонус к деньгам : "+pl.moneybonus,378,750);
+			ctx.fillText("Бонус к кайфу : "+pl.caefbonus,378,780);
+			ctx.fillText("Дебаф от работы : "+pl.workdebuf,378,810);
+			requestAnimationFrame(draw);
+		}
+		function goup(){anim = 0;if(using==false){var k = setInterval(function(){if(anim>=4){clearInterval(k);}pl.y-=12;anim++},1000/50)}else{}}
+		function goleft(){anim = 0;if(using==false){var k = setInterval(function(){if(anim>=4){clearInterval(k);}pl.x-=12;anim++},1000/50)}else{}}
+		function godown(){anim = 0;if(using==false){var k = setInterval(function(){if(anim>=4){clearInterval(k);}pl.y+=12;anim++},1000/50)}else{}
+		}
+		function goright(){anim = 0;if(using==false){var k = setInterval(function(){if(anim>=4){clearInterval(k);}pl.x+=12;anim++},1000/50)}else{}
+		}
+		function int(){
+			if(using==false){
+				using   = true;
+				ruka.src="src/ruka2.png";
+				setTimeout(function(){
+					ruka.src="src/ruka1.png";
+					using   = false;
+					if(pl.x+64>narco1.x&&pl.x<narco1.x+128&&pl.y+106>narco1.y&&pl.y<narco1.y+103){
+						pl.narco1_count++
+						narco1.x=rand(0,720-64);
+						narco1.y=rand(0,720-106);
+						pl.caef +=narco1.caef;
+					}
+					if(pl.x+64>narco2.x&&pl.x<narco2.x+128&&pl.y+106>narco2.y&&pl.y<narco2.y+103){
+						pl.narco2_count++
+						narco2.x=1500
+						pl.caef +=narco2.caef;
+					}
+					if(pl.x+64>narco3.x&&pl.x<narco3.x+128&&pl.y+106>narco3.y&&pl.y<narco3.y+103){
+						pl.narco3_count++
+						narco3.x=1500
+						pl.caef +=narco3.caef;
+					}
+				},1000);
+			}else{}
+
+		}
+		var mobilemode = 0;
+		function mobmode(){
+			if(mobilemode==0){
+				var elems=document.getElementsByClassName('phonegame');
+				for(var i=0; i<elems.length; i++)elems[i].style.display='inline';
+				mobilemode=1;
+			}else if(mobilemode==1){
+				var elems=document.getElementsByClassName('phonegame');
+				for(var i=0; i<elems.length; i++)elems[i].style.display='none';
+				mobilemode=0;
+			}
+		}
+		function spawnnarco2(){narco2.x=rand(0,720-120);narco2.y=rand(0,720-79);}
+		function spawnnarco3(){narco3.x=rand(0,720-128);narco3.y=rand(0,720-29);}
+		function shop(){
+			var vibor = prompt("Выбирай:\n1 - Заказать таблетки (не более 1 на карте) - 100 рублей\n2 - Заказать солей (не более 1 на карте) - 200 рублей\n3 - Новая аватарка (+5 к статам, максимум 4 улучшения) - 500 рублей \n4 - Стимуляторы (+5 к заработаным деньгам) - 300 рублей \n5 - Быстрый кайф (+2 к кайфарику) - 300 рублей\n6 - Запаска (уменьшает дебаф от работы на 1, максимум 0) - 100 рублей");
+			if(vibor==1){if(pl.money>=100){pl.money-=100;spawnnarco2()}}
+			else if(vibor==2){if(pl.money>=200){pl.money-=200;spawnnarco3()}}
+			else if(vibor==3){if(pl.avatar>=5){}else{if(pl.money>=500){pl.money-=500;pl.avatar++;pl.moneybonus+=5;pl.caefbonus+=5}}}
+			else if(vibor==4){if(pl.money>=300){pl.money-=300;pl.moneybonus+=5}}
+			else if(vibor==5){if(pl.money>=300){pl.money-=300;pl.caefbonus+=2}}
+			else if(vibor==6){if(pl.workdebuf<=0){}else{if(pl.money>=100){pl.money-=100;pl.workdebuf--}}}
+			if(pl.avatar==2){avatar.src="src/ava2.png"}
+			else if(pl.avatar==3){avatar.src="src/ava3.png"}
+			else if(pl.avatar==4){avatar.src="src/ava4.png"}
+			else if(pl.avatar==5){avatar.src="src/ava5.png"}
+		}
+		function work(){
+			var captha228 = rand(10000,99999)
+			var vibor = prompt("Введи капчу - " + captha228);
+			pl.caef-=pl.workdebuf;
+			if(pl.caef<=0){pl.caef=0}
+			if(vibor == captha228){pl.money+=10 + pl.moneybonus}
+
+		}
+		addEventListener("keydown", function(event) {
+    		switch(event.keyCode){
+			    case 87:goup();break;
+			    case 83:godown();break;
+			    case 65:goleft();break;
+			    case 68:goright();break;
+				case 69:int();break;
+			}
+    		});
+
+	</script>
+</body>
+</html>
