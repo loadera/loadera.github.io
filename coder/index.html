@@ -6,16 +6,19 @@
 		body{
 			text-align: center;
 		}
+		#code{
+			font-size: 20px;
+		}
 	</style>
 </head>
 <body>
 	<h2>ЪЕЬ Кодер/Декодер</h2>
 	ввод:<br>
-	<textarea id="input"></textarea><br>
-	<button onclick="encode()">ЗАШИФРОВАТЬ</button>
-	<button onclick="decode()">РАСШИФРОВАТЬ</button><br>
+	<textarea id="input" cols = "55" rows = "12"></textarea><br>
+	<button onclick="encode()" id="code">ЗАШИФРОВАТЬ</button>
+	<button onclick="decode()" id="code">РАСШИФРОВАТЬ</button><br>
 	вывод:<br>
-	<textarea id="output" readonly="true"></textarea><br>
+	<textarea id="output" readonly="true" cols = "55" rows = "12"></textarea><br>
 	<script type="text/javascript">
 		
 		var input = ""; //из кода выйди разбойник
@@ -27,7 +30,7 @@
 			input = document.getElementById("input").value;
 			output = "";
 			for(var i=0;i<input.length;i++){
-				switch (input[i]) {
+				switch (input[i].toLowerCase()) {
 					case "а": output+="ъ "; break;
 					case "б": output+="ь "; break;
 					case "в": output+="е "; break;
@@ -61,6 +64,16 @@
 					case "э": output+="еьеь "; break;
 					case "ю": output+="еъеь "; break;
 					case "я": output+="еьеъ "; break;
+					case "0": output+="ьььь "; break;
+					case "1": output+="ььье "; break;
+					case "2": output+="ььее "; break;
+					case "3": output+="ьеее "; break;
+					case "4": output+="еееъ "; break;
+					case "5": output+="ееъъ "; break;
+					case "6": output+="еъъъ "; break;
+					case "7": output+="ъъъь "; break;
+					case "8": output+="ъъьь "; break;
+					case "9": output+="ъььь "; break;
 					case " ": output+="ъъъъ "; break;
 					default:
 						output+=input[i] + " ";
@@ -109,6 +122,17 @@
 					case "еьеь": output+="э"; break;
 					case "еъеь": output+="ю"; break;
 					case "еьеъ": output+="я"; break;
+					case "ьььь": output+="0"; break;
+					case "ььье": output+="1"; break;
+					case "ььее": output+="2"; break;
+					case "ьеее": output+="3"; break;
+					case "еееъ": output+="4"; break;
+					case "ееъъ": output+="5"; break;
+					case "еъъъ": output+="6"; break;
+					case "ъъъь": output+="7"; break;
+					case "ъъьь": output+="8"; break;
+					case "ъььь": output+="9"; break;
+					case " ": output+="ъъъъ "; break;
 					case "ъъъъ": output+=" "; break;
 					default:
 						output+=input[i];
@@ -118,6 +142,8 @@
 		}
 	}
 	</script>
+	<br>
+	Работает только на русских буквах и цифрах, любые знаки кроме них не будут шифроваться
 	<br>
 	<br>
 	<br>
